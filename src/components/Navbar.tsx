@@ -114,13 +114,13 @@ export default function Navbar() {
               transition={{ delay: 0.6 }}
               className="absolute bottom-12 flex gap-8 text-white/50 font-outfit uppercase tracking-widest text-sm"
             >
-              <a href="/about" className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
+              <a href="/about" onClick={() => setIsOpen(false)} className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
                 About Us
               </a>
-              <a href="/faq" className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
+              <a href="/faq" onClick={() => setIsOpen(false)} className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
                 FAQ
               </a>
-              <a href="/#order" className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
+              <a href="/#order" onClick={() => setIsOpen(false)} className="hover:text-white hover:[text-shadow:0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
                 Contact
               </a>
             </motion.div>

@@ -14,14 +14,48 @@ export default function SequenceScroll() {
     offset: ["start start", "end end"],
   });
 
-  // Pre-load all 118 frames into memory
+  // Pre-load frames progressively to avoid network and main thread blocking
   useEffect(() => {
-    for (let i = 1; i <= 118; i++) {
-      const img = new Image();
-      const frameNumber = i.toString().padStart(3, "0");
-      img.src = `/sequence/ezgif-frame-${frameNumber}.jpg`;
-      imagesRef.current.push(img);
+    const totalFrames = 118;
+    
+    // Initialize array with empty spots
+    for (let i = 0; i < totalFrames; i++) {
+      imagesRef.current.push(new Image());
     }
+
+    const loadFrame = (index: number) => {
+      const frameNumber = (index + 1).toString().padStart(3, "0");
+      const img = new Image();
+      img.src = `/sequence/ezgif-frame-${frameNumber}.jpg`;
+      img.onload = () => {
+        imagesRef.current[index] = img;
+        // Notify when the first frame is loaded to paint the canvas immediately
+        if (index === 0) {
+          window.dispatchEvent(new Event("firstFrameLoaded"));
+        }
+      };
+    };
+
+    // 1. Prioritize first 10 frames for instant initial scroll experience
+    for (let i = 0; i < 10; i++) {
+      loadFrame(i);
+    }
+
+    // 2. Lazy load the remaining frames in small batches
+    let currentLoadIndex = 10;
+    const lazyLoadInterval = setInterval(() => {
+      if (currentLoadIndex < totalFrames) {
+        // Load 4 frames per batch every 100ms (avoids choking the browser)
+        for (let b = 0; b < 4 && currentLoadIndex < totalFrames; b++) {
+          loadFrame(currentLoadIndex);
+          currentLoadIndex++;
+        }
+      } else {
+        clearInterval(lazyLoadInterval);
+      }
+    }, 100);
+
+    return () => clearInterval(lazyLoadInterval);
   }, []);
 
   // Draw frame on canvas when scroll progress changes
@@ -45,20 +79,35 @@ export default function SequenceScroll() {
 
     function drawFrame(index: number) {
       if (!ctx || !canvas) return;
-      const img = imagesRef.current[index];
-      if (!img || !img.complete) return;
+      
+      // Fallback mechanism: If the exact frame isn't loaded yet,
+      // show the closest previously loaded frame to prevent flickering
+      let imgToDraw = null;
+      for (let i = index; i >= 0; i--) {
+        const img = imagesRef.current[i];
+        if (img && img.complete && img.naturalWidth > 0) {
+          imgToDraw = img;
+          break;
+        }
+      }
+      
+      if (!imgToDraw) return;
 
       // Object fit cover logic for canvas
-      const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
-      const x = (canvas.width / 2) - (img.width / 2) * scale;
-      const y = (canvas.height / 2) - (img.height / 2) * scale;
+      const scale = Math.max(canvas.width / imgToDraw.width, canvas.height / imgToDraw.height);
+      const x = (canvas.width / 2) - (imgToDraw.width / 2) * scale;
+      const y = (canvas.height / 2) - (imgToDraw.height / 2) * scale;
 
       // We fill black background first to match seamless
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+      ctx.drawImage(imgToDraw, x, y, imgToDraw.width * scale, imgToDraw.height * scale);
     }
+
+    // Listen for the first frame to paint it immediately without waiting for scroll
+    const handleFirstFrame = () => drawFrame(0);
+    window.addEventListener("firstFrameLoaded", handleFirstFrame);
 
     // Subscribe to scroll changes
     const unsubscribe = scrollYProgress.on("change", (latest) => {
@@ -70,6 +119,7 @@ export default function SequenceScroll() {
     return () => {
       unsubscribe();
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("firstFrameLoaded", handleFirstFrame);
     };
   }, [scrollYProgress]);
 

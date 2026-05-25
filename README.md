@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aquasteel. 💧
 
-## Getting Started
+Sebuah *website landing page* premium berkonsep *scrollytelling* interaktif untuk merek botol air minum eksklusif, **Aquasteel**. Dirancang dengan desain minimalis, berkelas, dan animasi mulus untuk memanjakan mata pelanggan sekaligus meningkatkan konversi penjualan.
 
-First, run the development server:
+Dideploy dan bisa diakses secara online melalui Vercel.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Fitur Unggulan
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Immersive Scrollytelling (Sequence Animation)**: Menampilkan animasi produk secara 3D mulus dari ratusan *frame* foto yang merespons secara langsung terhadap gerakan *scroll* *mouse* pengunjung menggunakan teknik HTML Canvas.
+- **Glassmorphism Navbar**: Menu navigasi lengkung bergaya material kaca *frost*, lengkap dengan efek *blur*, transparansi, serta animasi cahaya (*pulse glow*) mewah yang interaktif saat di-*hover*.
+- **Animasi Mulus (Framer Motion)**: Seluruh transisi, pergerakan teks, efek muncul (*fade-in*), hingga panel testimonial (*slider*) direkayasa menggunakan *library* Framer Motion untuk menghasilkan pergerakan tanpa jeda.
+- **Dynamic Image Gallery**: Galeri foto pameran produk yang otomatis terhubung dan menampilkan deretan aset visual dari folder lokal, memberikan kesan dinamis pada halaman utama.
+- **Direct WhatsApp Checkout**: Alur pemesanan efisien dan bebas hambatan yang memandu pelanggan dari ulasan langsung ke integrasi pemesanan WhatsApp satu klik.
+- **Responsif**: Tampilan yang menyesuaikan sempurna baik pada layar sentuh ponsel hingga layar lebar monitor desktop.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Teknologi yang Digunakan
 
-To learn more about Next.js, take a look at the following resources:
+Proyek ini dibangun dari nol dengan menggunakan *stack* modern:
+- **[Next.js (App Router)](https://nextjs.org/)** - Framework React untuk performa *rendering* super cepat.
+- **[Tailwind CSS](https://tailwindcss.com/)** - *Styling* berbasis *utility-class* yang fleksibel.
+- **[Framer Motion](https://www.framer.com/motion/)** - Animasi *physics-based* kelas atas.
+- **[Lucide React](https://lucide.dev/)** - Kumpulan ikon vektor UI premium dan minimalis.
+- **TypeScript** - Untuk keandalan struktur dan penulisan kode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Panduan Menjalankan Secara Lokal (Local Development)
 
-## Deploy on Vercel
+Ikuti langkah-langkah di bawah ini jika Anda ingin menjalankan, memodifikasi, dan meninjau situs ini di komputer Anda sendiri.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Kloning (Clone) Repository Ini**
+   ```bash
+   git clone https://github.com/USERNAME_ANDA/aquasteel.git
+   cd aquasteel
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Instal Dependensi (Dependencies)**
+   Pastikan Anda telah memasang [Node.js](https://nodejs.org/). Kemudian jalankan perintah ini:
+   ```bash
+   npm install
+   ```
+   *(Atau gunakan `yarn install` / `pnpm install` / `bun install` sesuai *package manager* Anda)*
+
+3. **Jalankan Server Lokal**
+   ```bash
+   npm run dev
+   ```
+
+4. **Lihat Hasilnya**
+   Buka *browser* Anda dan kunjungi [http://localhost:3000](http://localhost:3000). Anda sudah bisa melihat *website* ini secara langsung!
+
+---
+
+## 📦 Deployment
+
+Proyek ini dioptimalkan khusus untuk di-deploy menggunakan **Vercel** karena merupakan standar industri untuk arsitektur Next.js.
+Untuk melakukan pembaruan di server Vercel Anda, cukup lakukan perubahan di komputer Anda, jalankan `git commit`, lalu `git push origin main`. Vercel akan membaca repositori GitHub ini dan memperbarui *website* secara instan.
+
+---
+*Dibuat oleh Tim aquasteel | Universitas Negeri Surabaya.*
