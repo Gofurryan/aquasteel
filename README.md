@@ -11,7 +11,7 @@ Dideploy dan bisa diakses secara online melalui Vercel.
 - **Immersive Scrollytelling (Sequence Animation)**: Menampilkan animasi produk secara 3D mulus dari ratusan *frame* foto yang merespons secara langsung terhadap gerakan *scroll* *mouse* pengunjung menggunakan teknik HTML Canvas.
 - **Glassmorphism Navbar**: Menu navigasi lengkung bergaya material kaca *frost*, lengkap dengan efek *blur*, transparansi, serta animasi cahaya (*pulse glow*) mewah yang interaktif saat di-*hover*.
 - **Animasi Mulus (Framer Motion)**: Seluruh transisi, pergerakan teks, efek muncul (*fade-in*), hingga panel testimonial (*slider*) direkayasa menggunakan *library* Framer Motion untuk menghasilkan pergerakan tanpa jeda.
-- **Dynamic Image Gallery**: Galeri foto pameran produk yang otomatis terhubung dan menampilkan deretan aset visual dari folder lokal, memberikan kesan dinamis pada halaman utama.
+- **Dynamic Image Gallery**: Galeri foto produk yang menampilkan deretan aset visual, memberikan kesan dinamis pada halaman utama.
 - **Direct WhatsApp Checkout**: Alur pemesanan efisien dan bebas hambatan yang memandu pelanggan dari ulasan langsung ke integrasi pemesanan WhatsApp satu klik.
 - **Responsif**: Tampilan yang menyesuaikan sempurna baik pada layar sentuh ponsel hingga layar lebar monitor desktop.
 
